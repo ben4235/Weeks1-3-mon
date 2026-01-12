@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    float timer = 0f;
+    float waitTime = 3f;
+
     float randomX;
     float randomY;
 
@@ -14,11 +17,13 @@ public class Teleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer = Time.deltaTime;
+        if (timer >= waitTime)
+        {
+            Vector2 newPosition = new Vector2(Random.Range(0, Screen.height), Random.Range(0, Screen.width));
 
-        Vector2 newPosition = new Vector2(randomX, randomY);
-        randomX = Random.Range(0, Screen.width);
-        randomY = Random.Range(0, Screen.height);
-
-        transform.position = newPosition;
+            transform.position = newPosition;
+        }
+;
     }
 }
